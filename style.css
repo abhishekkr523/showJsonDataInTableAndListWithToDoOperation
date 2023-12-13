@@ -1,0 +1,102 @@
+*{
+    margin:0;
+    padding:0;
+}
+body{
+    height: 100vh;
+    width: 100%;
+}
+header{
+    height: 15vh;
+    width: 100%;
+    display: flex;
+    align-items:center;
+    justify-content: center;
+    font-size: 40px;
+    font-weight: 500;
+    background-color: orange;
+}
+/* main{
+    height: 80vh;
+    width: 100%;
+    display: flex;
+    align-items:center;
+    justify-content: center;
+}
+table{
+    height: 60vh;
+    width: 80%;
+    border: 2px solid palevioletred;
+    border-collapse: collapse;
+} */
+/* Add the following CSS rules to your existing styles */
+
+/* Set a fixed height for the table container */
+main {
+    height: 80vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden; /* Hide the overflow to prevent double scroll bars */
+    padding: 20px;
+    box-sizing: border-box;
+}
+.list-container{
+    height: 98%;
+    width: 50%;
+    background-color: rgb(186, 210, 210);
+    margin-right: 10px;
+    padding: 5px;
+}
+.list-container ul li{
+    height: 40px;
+    list-style: none;
+    padding: 2px;
+}
+
+/* Set a fixed height for the table */
+table {
+    height: 80%;
+    width: 50%;
+    border: 2px solid palevioletred;
+    border-collapse: collapse;
+    overflow-y: auto; /* Add a scrollbar for the table */
+   
+}
+
+
+th, td, tr{
+    border: 2px solid rgb(8, 6, 6);
+    text-align: left;
+    padding: 8px;
+    height: 30px;
+}
+
+th {
+    background-color: rgb(135, 135, 192);
+  }
+footer{
+    height: 5vh;
+    width: 100%;
+    display: flex;
+    align-items:center;
+    justify-content: center;
+    font-size: 15px;
+    background-color: black;
+    color: #ffff;
+}
+
+@media screen and (max-width:1000px){
+    main {
+        height:auto;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden; /* Hide the overflow to prevent double scroll bars */
+        padding: 20px;
+        box-sizing: border-box;
+    }
+}
