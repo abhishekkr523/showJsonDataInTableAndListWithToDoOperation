@@ -12,6 +12,31 @@
 <body>
     <header>Show json data in table and list</header>
     <main>
+        <!-- Add form for adding new student -->
+        <form id="addForm">
+            <div class="input-field">
+            <label for="id">ID:</label>
+            <input type="text" id="id" name="id" required>
+            </div>
+            <div class="input-field">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required>
+            </div>
+            <div class="input-field">
+            <label for="age">Age:</label>
+            <input type="text" id="age" name="age" required>
+            </div>
+            <div class="input-field">
+            <label for="grade">Grade:</label>
+            <input type="text" id="grade" name="grade" required>
+            </div>
+            <div class="input-field">
+            <label for="courses">Courses:</label>
+            <input type="text" id="courses" name="courses" required>
+            </div>
+            <button type="button" onclick="addStudent()">Add</button>
+        </form>
+        <div class="list-table-container">
         <div class="list-container">
             <ul>
                 
@@ -66,6 +91,7 @@
                 </tr> -->
             </tbody>
         </table>
+    </div>
     </main>
     <footer> &copy; 2023 Your Company Name. All Rights Reserved.</footer>
 </body>

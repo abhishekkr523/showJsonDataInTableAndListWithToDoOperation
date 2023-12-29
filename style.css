@@ -3,7 +3,7 @@
     padding:0;
 }
 body{
-    height: 100vh;
+    height: 100%;
     width: 100%;
 }
 header{
@@ -33,21 +33,61 @@ table{
 
 /* Set a fixed height for the table container */
 main {
-    height: 80vh;
+    height: auto;
     width: 100%;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     overflow: hidden; /* Hide the overflow to prevent double scroll bars */
     padding: 20px;
     box-sizing: border-box;
 }
+form{
+    width:85%;
+    margin: 20px;
+    padding:30px;
+    background-color: rgb(217, 86, 34);
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+label{
+    padding: 5px;
+    margin: 5px;
+    font-size: 20px;
+}
+input{
+    padding: 5px;
+    margin: 5px;
+    font-size: 16px;
+}
+.input-field{
+    padding: 10px;
+    
+}
+button{
+    padding: 4px;
+    font-size: 20px;
+    border-radius: 5px;
+}
+.list-table-container{
+    height: auto;
+    width: 100%;
+    display: flex;
+    align-items:flex-start;
+    justify-content: center;
+}
 .list-container{
-    height: 98%;
+    height: auto;
     width: 50%;
     background-color: rgb(186, 210, 210);
     margin-right: 10px;
     padding: 5px;
+}
+.list-container ul{
+    height: auto;
 }
 .list-container ul li{
     height: 40px;
@@ -98,5 +138,54 @@ footer{
         overflow: hidden; /* Hide the overflow to prevent double scroll bars */
         padding: 20px;
         box-sizing: border-box;
+    }
+}
+@media screen and (max-width:1400px){
+    .list-table-container{
+        height: auto;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items:center;
+        justify-content: center;
+    }
+    form{
+        width:85%;
+        height: auto;
+        margin: 20px;
+        padding:30px;
+        background-color: rgb(217, 86, 34);
+        border-radius: 15px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+    .input-field{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+    .list-container{
+        height: auto;
+        width: 90%;
+        background-color: rgb(186, 210, 210);
+        margin-right: 10px;
+        padding: 5px;
+    }
+    .list-container ul li{
+        height: 60px;
+        list-style: none;
+        padding: 2px;
+    }
+    table {
+        margin-top: 20px;
+        height: auto;
+        width: 90%;
+        border: 2px solid palevioletred;
+        border-collapse: collapse;
+        overflow-y: auto; /* Add a scrollbar for the table */
+       
     }
 }

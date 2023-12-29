@@ -70,7 +70,7 @@ var jsonData = {
             "grade": "A",
             "courses": ["Public Health", "Chinese", "Film Studies"]
         },
-        
+
     ]
 };
 
@@ -79,6 +79,9 @@ console.log(jsonData);
 // Function to generate table rows from JSON data
 function generateTableRows() {
     var tableBody = document.getElementById("studentTable").getElementsByTagName('tbody')[0];
+
+    // Clear existing rows
+    tableBody.innerHTML = "";
 
     for (var i = 0; i < jsonData.students.length; i++) {
         var student = jsonData.students[i];
@@ -100,7 +103,7 @@ function generateTableRows() {
         // Add a delete button with an onclick event
         var deleteButton = document.createElement("button");
         deleteButton.textContent = "Delete";
-        deleteButton.onclick = function() {
+        deleteButton.onclick = function () {
             deleteRow(this); // Pass the button element to the deleteRow function
         };
         cell6.appendChild(deleteButton);
@@ -118,8 +121,45 @@ function deleteRow(button) {
 //         std_list.innerHTML=students[1].name;
 //     }
 // }
+// function generatelist() {
+//     var ulElement = document.querySelector('.list-container ul');
+
+//     // Clear existing list items
+//     ulElement.innerHTML = "";
+
+//     for (var i = 0; i < jsonData.students.length; i++) {
+//         var student = jsonData.students[i];
+//         let liElement = document.createElement('li'); // Use let instead of var
+
+//         // Create a delete button
+//         var deleteButton = document.createElement('button');
+//         deleteButton.textContent = 'Delete';
+//         deleteButton.addEventListener('click', function () {
+//             // Remove the corresponding li when the delete button is clicked
+//             ulElement.removeChild(liElement);
+//         });
+
+//          // Create an edit button
+//          var editButton = document.createElement('button');
+//          editButton.textContent = 'Edit';
+//          editButton.addEventListener('click', function () {
+//              // Call a function to handle the edit action
+//              editStudent(i);
+//          });
+
+//         // Add student details and delete button to the li
+//         liElement.textContent = `students details= ${student.id} ${student.name} ${student.age} ${student.grade} ${student.courses}`;
+//         liElement.appendChild(deleteButton);
+//         liElement.appendChild(editButton);
+//         // Add the li to the ul
+//         ulElement.appendChild(liElement);
+//     }
+// }
 function generatelist() {
     var ulElement = document.querySelector('.list-container ul');
+
+    // Clear existing list items
+    ulElement.innerHTML = "";
 
     for (var i = 0; i < jsonData.students.length; i++) {
         var student = jsonData.students[i];
@@ -133,20 +173,148 @@ function generatelist() {
             ulElement.removeChild(liElement);
         });
 
+        // Create an edit button with an IIFE to capture the correct value of i
+        var editButton = (function (index) {
+            var button = document.createElement('button');
+            button.textContent = 'Edit';
+            button.addEventListener('click', function () {
+                // Call a function to handle the edit action
+                editStudent(index);
+            });
+            return button;
+        })(i);
+
         // Add student details and delete button to the li
         liElement.textContent = `students details= ${student.id} ${student.name} ${student.age} ${student.grade} ${student.courses}`;
         liElement.appendChild(deleteButton);
-
+        liElement.appendChild(editButton);
         // Add the li to the ul
         ulElement.appendChild(liElement);
     }
 }
 
+// // Function to add a new student to the list and table
+// function addStudent() {
+//     var form = document.getElementById("addForm");
+//     var id = form.elements["id"].value;
+//     var name = form.elements["name"].value;
+//     var age = form.elements["age"].value;
+//     var grade = form.elements["grade"].value;
+//     var courses = form.elements["courses"].value.split(", "); // Split courses into an array
+
+//     // Add the new student to the jsonData.students array
+//     jsonData.students.push({
+//         "id": parseInt(id),
+//         "name": name,
+//         "age": parseInt(age),
+//         "grade": grade,
+//         "courses": courses
+//     });
+
+// Generate the new row in the table
+// generateTableRows();
+
+// Generate the new list item in the ul
+// generatelist();
+
+// Reset the form fields
+// form.reset();
+// }
+// Function to add a new student to the list and table at a specific index
+function addStudent(index) {
+    var form = document.getElementById("addForm");
+    var id = form.elements["id"].value;
+    var name = form.elements["name"].value;
+    var age = form.elements["age"].value;
+    var grade = form.elements["grade"].value;
+    var courses = form.elements["courses"].value.split(", "); // Split courses into an array
+
+    // Insert the new student at the specified index
+    jsonData.students.splice(index, 0, {
+        "id": parseInt(id),
+        "name": name,
+        "age": parseInt(age),
+        "grade": grade,
+        "courses": courses
+    });
+
+    // // Push the new student to the end of the array, this method has no need of index
+    // jsonData.students.push({
+    //     "id": parseInt(id),
+    //     "name": name,
+    //     "age": parseInt(age),
+    //     "grade": grade,
+    //     "courses": courses
+    // });
+
+    // Generate the new row in the table
+    generateTableRows();
+
+    // Generate the new list item in the ul
+    generatelist();
+
+    // Reset the form fields
+    form.reset();
+}
+
+// // Function to handle the edit action
+// function editStudent(index) {
+//     var form = document.getElementById("addForm");
+//     var idField = form.elements["id"];
+//     var nameField = form.elements["name"];
+//     var ageField = form.elements["age"];
+//     var gradeField = form.elements["grade"];
+//     var coursesField = form.elements["courses"];
+
+//     // Get the student data at the specified index
+//     var student = jsonData.students[index];
+
+//     // Set the form fields with the student data
+//     idField.value = student.id;
+//     nameField.value = student.name;
+//     ageField.value = student.age;
+//     gradeField.value = student.grade;
+//     coursesField.value = student.courses.join(", ");
+
+//     // Remove the student at the specified index
+//     jsonData.students.splice(index, 1);
+
+//     // Update the table rows and list
+//     generateTableRows();
+//     generatelist();
+// }
+function editStudent(index) {
+    console.log(index);
+    var form = document.getElementById("addForm");
+    var idField = form.elements["id"];
+    var nameField = form.elements["name"];
+    var ageField = form.elements["age"];
+    var gradeField = form.elements["grade"];
+    var coursesField = form.elements["courses"];
+
+    // Get the student data at the specified index
+    var student = jsonData.students[index];
+console.log(student);
+    // Set the form fields with the student data
+    idField.value = student.id;
+    nameField.value = student.name;
+    ageField.value = student.age;
+    gradeField.value = student.grade;
+    coursesField.value = student.courses.join(", ");
+
+    // Call the function to generate table rows before removing the student
+    generateTableRows();
+
+    // Remove the student at the specified index
+    jsonData.students.splice(index, 1);
+
+    // Update the list
+    generatelist();
+}
 
 
 
-
- // Function to change the content of all <th> elements to "abhi"
+// Function to change the content of all <th> elements to "abhi"
 //  function changeThDataToAbhi() {
 //     var thElements = document.getElementsByTagName('th');
 
@@ -163,7 +331,7 @@ function generatelist() {
 // Call the function to generate table rows after the DOM is loaded
 
 document.addEventListener("DOMContentLoaded", function () {
-    
+
     // changeThDataToAbhi()
     generatelist();
     generateTableRows();
